@@ -1,78 +1,42 @@
 "use strict";
 
-import Swiper from '../libs/swiper/swiper-bundle.min.mjs';
-import JSCCommon from "./JSCCommon.js";
-
-const $ = jQuery;
-
 function eventHandler() {
-	JSCCommon.init();
+	// var googleApiKey = "AIzaSyDnNAhrE6qbZPUGCkw_8yA5_jM2TQQ5x3s";
+	// var spreadsheetId = "1u4Y1e6PALSTQLmcsYjbP4a95afVLuXIq";
 
-	function whenResize() {
-		JSCCommon.setFixedNav();
+	// fetch(
+	// 	`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Sheet1!A1:E5?key=${googleApiKey}`
+	// )
+	// 	.then(response => response.json())
+	// 	.then(data => console.log(data));
+
+	var googleApiKey = "AIzaSyDnNAhrE6qbZPUGCkw_8yA5_jM2TQQ5x3s";
+
+	// ID вашей Google таблицы
+	var spreadsheetId = "1u4Y1e6PALSTQLmcsYjbP4a95afVLuXIq";
+
+	// Функция для получения данных из Google таблицы
+	function getDataFromGoogleSheet() {
+		fetch(
+			`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Sheet1!A1:E5?key=${googleApiKey}`
+		)
+			.then(response => response.json())
+			// .then(data => {
+			//     var html = '';
+			//     data.values.forEach(row => {
+			//         html += '<p>' + row.join(', ') + '</p>';
+			//     });
+			//     document.getElementById('data').innerHTML = html;
+			// })
+			.then(data => console.log(data))
+			.catch(error => console.error("Ошибка:", error));
 	}
 
-	window.addEventListener(
-		"scroll",
-		() => {
-			JSCCommon.setFixedNav();
-		},
-		{passive: true}
-	);
-	window.addEventListener("resize", whenResize, {passive: true});
-
-	whenResize();
-
-	let defaultSl = {
-		spaceBetween: 0,
-		lazy: {
-			loadPrevNext: true,
-		},
-		watchOverflow: true,
-		loop: true,
-		navigation: {
-			nextEl: ".swiper-button-next",
-			prevEl: ".swiper-button-prev",
-		},
-		pagination: {
-			el: " .swiper-pagination",
-			type: "bullets",
-			clickable: true,
-			// renderBullet: function (index, className) {
-			// 	return '<span class="' + className + '">' + (index + 1) + '</span>';
-			// }
-		},
-	};
-
-	new Swiper(".breadcrumb-slider--js", {
-		slidesPerView: "auto",
-		freeMode: true,
-		watchOverflow: true,
-	});
-
-	const swiper4 = new Swiper(".sBanners__slider--js", {
-		// slidesPerView: 5,
-		...defaultSl,
-		slidesPerView: "auto",
-		freeMode: true,
-		loopFillGroupWithBlank: true,
-		touchRatio: 0.2,
-		slideToClickedSlide: true,
-		freeModeMomentum: true,
-	});
-
-	
+	// Вызываем функцию
+	getDataFromGoogleSheet();
 }
 if (document.readyState !== "loading") {
 	eventHandler();
 } else {
 	document.addEventListener("DOMContentLoaded", eventHandler);
 }
-
-// window.onload = function () {
-// 	document.body.classList.add('loaded_hiding');
-// 	window.setTimeout(function () {
-// 		document.body.classList.add('loaded');
-// 		document.body.classList.remove('loaded_hiding');
-// 	}, 500);
-// }
