@@ -7,7 +7,7 @@ $output-bourbon-deprecation-warnings: false;
 
 // @import "mq";
 @import "bourbon/app/assets/stylesheets/bourbon";
-@import 'custom-bootstrap.min.css';
+// @import 'custom-bootstrap.min.css';
 
 // @import "../../node_modules/rfs/scss";
 // @import "./node_modules/@fancyapps/ui/src/Fancybox/Fancybox.scss";
@@ -19,20 +19,19 @@ $output-bourbon-deprecation-warnings: false;
 
 // Option B: Include parts of Bootstrap
 
-
 // v5
 
 // Layout & components
 
-@import "./node_modules/bootstrap/scss/functions";
-@import "vars_base";   
-@import "vars";   
-@import "./node_modules/bootstrap/scss/mixins";
+// @import "./node_modules/bootstrap/scss/functions";
+// @import "vars_base";
+// @import "vars";
+// @import "./node_modules/bootstrap/scss/mixins";
 
-@import "root";
-@import "base";
+// @import "root";
+// @import "base";
 
-@import '../pug/blocks/**/*.scss';
+// @import "../pug/blocks/**/*.scss";
 // @import '../pug/blocks/form-wrap/form-wrap.scss';
 
 // @import '../pug/blocks/topLine/_topLine.scss';
@@ -48,11 +47,34 @@ $output-bourbon-deprecation-warnings: false;
 
 // @import "media"; // Всегда в конце
 
-
-
-
-
 /*
   коммент
 	#{primary}
 */
+
+.container {
+	max-width: 1000px;
+	margin-inline: auto;
+}
+
+.card-item {
+	box-sizing: border-box;
+	margin-bottom: 40px;
+	&__panel {
+		border: 1px solid #eee;
+		position: relative;
+		padding: 40px;
+		border-radius: 9px;
+	}
+	* {
+		box-sizing: border-box;
+	}
+	table {
+		font-size: 18px;
+		td {
+			vertical-align: top;
+			padding-right: 20px;
+		}
+	}
+	color: #757575;
+}

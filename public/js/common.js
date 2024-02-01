@@ -1,39 +1,36 @@
 "use strict";
 
 function eventHandler() {
-	// var googleApiKey = "AIzaSyDnNAhrE6qbZPUGCkw_8yA5_jM2TQQ5x3s";
-	// var spreadsheetId = "1u4Y1e6PALSTQLmcsYjbP4a95afVLuXIq";
+	let data = [];
+	Papa.parse("table.csv", {
+		download: true,
+		complete: function (results) {
+			data = results.data;
+			console.log(data);
 
-	// fetch(
-	// 	`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Sheet1!A1:E5?key=${googleApiKey}`
-	// )
-	// 	.then(response => response.json())
-	// 	.then(data => console.log(data));
-
-	var googleApiKey = "AIzaSyDnNAhrE6qbZPUGCkw_8yA5_jM2TQQ5x3s";
-
-	// ID вашей Google таблицы
-	var spreadsheetId = "1u4Y1e6PALSTQLmcsYjbP4a95afVLuXIq";
-
-	// Функция для получения данных из Google таблицы
-	function getDataFromGoogleSheet() {
-		fetch(
-			`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Sheet1!A1:E5?key=${googleApiKey}`
-		)
-			.then(response => response.json())
-			// .then(data => {
-			//     var html = '';
-			//     data.values.forEach(row => {
-			//         html += '<p>' + row.join(', ') + '</p>';
-			//     });
-			//     document.getElementById('data').innerHTML = html;
-			// })
-			.then(data => console.log(data))
-			.catch(error => console.error("Ошибка:", error));
-	}
-
-	// Вызываем функцию
-	getDataFromGoogleSheet();
+			let html = "";
+			for (let i = 1; i < data.length; i++) {
+				const element = data[i];
+				html += `
+				<div class="card-item">
+					<div class="card-item__panel">
+						<table>
+							<tr>
+								<td> <strong>${element[1].split(":")[1]}<br>${element[3].split(":")[1]} лет</strong></td>
+								<td>${element[2].split(":")[1]}</td>
+							</tr>
+							<tr>
+								<td>Рубрика:</td>
+								<td>${element[4]}</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				`;
+			}
+			document.querySelector("#cards").innerHTML = html;
+		},
+	});
 }
 if (document.readyState !== "loading") {
 	eventHandler();

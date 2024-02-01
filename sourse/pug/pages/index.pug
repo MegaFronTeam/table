@@ -20,11 +20,24 @@ block pagecontent
 	//- +mob-mnu()
 	
 	
-	+parts('header')
+	//- +parts('header')
 	main
-		+headerBlock 
-		+sCatalog
-		+sForm()
-		+sContact()
+		//- +headerBlock 
+		//- +sCatalog
+		.container#cards
+			+b.card-item
+				+e.panel
+					table
+						tr
+							td 
+								strong Имя
+									br
+									| 16 лет
+							td Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere, aspernatur?
+						tr
+							td Рубрика:
+							td Блоггинг
+	//- 	+sForm()
+	//- 	+sContact()
 		
-	+parts('footer')
+	//- +parts('footer')
