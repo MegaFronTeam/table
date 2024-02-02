@@ -80,6 +80,13 @@ function eventHandler() {
 								</tr>
 							</table>
 						</div>
+						<center>
+								<!-- LikeBtn.com BEGIN -->
+								<span class="likebtn-wrapper" data-theme="custom" data-icon_d="sml3-n" data-lang="ru" data-white_label="true" data-identifier="item_${element[0]}" data-dislike_enabled="false" data-icon_dislike_show="false" data-site_id="65b9ce4a943ec94645e4f749"></span>
+								
+								<!-- LikeBtn.com END -->
+								</center>
+
 					</div>
 				`;
 
