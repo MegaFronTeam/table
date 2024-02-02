@@ -56,10 +56,19 @@ $output-bourbon-deprecation-warnings: false;
 	max-width: 1000px;
 	margin-inline: auto;
 }
-
+.category-item {
+	margin-bottom: 40px;
+	&.hidden {
+		display: none;
+	}
+	h2 {
+		text-transform: uppercase;
+	}
+}
 .card-item {
 	box-sizing: border-box;
 	margin-bottom: 40px;
+
 	&__panel {
 		border: 1px solid #eee;
 		position: relative;
@@ -77,4 +86,39 @@ $output-bourbon-deprecation-warnings: false;
 		}
 	}
 	color: #757575;
+}
+
+.container__btns {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 10px 10px;
+	margin-block: 40px;
+}
+.category-btn {
+	padding: 10px 15px;
+	border-radius: 9px;
+	font-size: 14px;
+	cursor: pointer;
+	text-transform: uppercase;
+	color: var(--text-color, #000);
+	transition: all 0.3s;
+	--H: var(--color-bg, 0);
+	--S: 100%;
+	--L: 85%;
+	background-color: hsl(var(--H), var(--S), var(--L));
+	border: 1px solid hsl(var(--H), var(--S), var(--L));
+
+	&[data-cat-btn="all"] {
+		--S: 5%;
+	}
+	&:hover,
+	&.active {
+		--L: 30%;
+		// background-color: #f5f5f5;
+		color: #fff;
+		&[data-cat-btn="all"] {
+			--L: 60%;
+		}
+	}
 }
